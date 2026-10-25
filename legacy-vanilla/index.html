@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TechNova — The Future of Technology, Delivered.</title>
+<meta name="description" content="TechNova is a premium electronics marketplace: smartphones, laptops, tablets, audio, wearables, gaming, cameras and monitors.">
+<meta name="theme-color" content="#070A12">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23070A12'/%3E%3Cpath d='M8 10h16M16 10v14' fill='none' stroke='%232D68FF' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- Digital Preloader (3-second Electronic HUD Boot) -->
+<div id="preloader" class="preloader" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Loading TechNova">
+  <div class="loader-backdrop" aria-hidden="true"></div>
+  <div class="loader-grid-lines" aria-hidden="true"></div>
+  <div class="loader-glow-orb" aria-hidden="true"></div>
+
+  <div class="loader-core">
+    <!-- Top System Readout -->
+    <div class="loader-top-bar">
+      <span class="hud-tag"><span class="hud-dot"></span>TECHNOVA_OS // KERNEL v2.6</span>
+      <span class="hud-tag hud-right">ELECTRONICS SUITE · 256-BIT BUS</span>
+    </div>
+
+    <!-- Center Brand Emblem -->
+    <div class="loader-brand-box">
+      <div class="loader-emblem">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <rect width="32" height="32" rx="9" fill="url(#preloadG)"/>
+          <path d="M8 10h16M16 10v14" fill="none" stroke="#070A12" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <defs>
+            <linearGradient id="preloadG" x1="0" y1="0" x2="1" y2="1">
+              <stop stop-color="var(--c1, #2D68FF)"/>
+              <stop offset="1" stop-color="var(--c2, #F59E0B)"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="emblem-ping"></div>
+      </div>
+      <div class="loader-brand-name">Tech<span>Nova</span></div>
+      <div class="loader-brand-sub">NEXT-GEN ELECTRONICS PLATFORM</div>
+    </div>
+
+    <!-- Digital HUD Console -->
+    <div class="loader-console">
+      <div class="console-corner tl"></div>
+      <div class="console-corner tr"></div>
+      <div class="console-corner bl"></div>
+      <div class="console-corner br"></div>
+
+      <div class="console-header">
+        <div class="status-indicator">
+          <span class="pulse-indicator"></span>
+          <span id="loaderStatus" class="status-text">INITIALIZING HARDWARE ENCLAVE...</span>
+        </div>
+        <div class="percent-counter" id="loaderPercent">00%</div>
+      </div>
+
+      <!-- Digital Progress Track -->
+      <div class="progress-frame">
+        <div class="progress-fill" id="loaderBar" style="width: 0%"></div>
+        <div class="progress-laser"></div>
+        <div class="progress-ticks" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+
+      <!-- Telemetry Readouts -->
+      <div class="console-telemetry">
+        <div class="tel-item">
+          <span class="tel-label">CORE CLOCK</span>
+          <span class="tel-val" id="telClock">3.60 GHz</span>
+        </div>
+        <div class="tel-item">
+          <span class="tel-label">DEVICE MESH</span>
+          <span class="tel-val">ONLINE (27/27)</span>
+        </div>
+        <div class="tel-item">
+          <span class="tel-label">PAYMENT BUS</span>
+          <span class="tel-val">UPI / INR READY</span>
+        </div>
+        <div class="tel-item">
+          <span class="tel-label">SECURITY</span>
+          <span class="tel-val ok">VERIFIED</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Audio/Security Notice -->
+    <div class="loader-footer-note">
+      <span class="scan-chip">DIAGNOSTIC ACTIVE</span>
+      <span class="scan-time" id="loaderTimer">0.00s / 3.00s</span>
+    </div>
+  </div>
+</div>
+
+<a class="skip" href="#shop">Skip to products</a>
+
+<!-- Header -->
+<header class="site-header" id="siteHeader">
+  <div class="wrap header-row">
+    <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <a class="logo" href="#top" aria-label="TechNova home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="url(#lg)"/><path d="M8 10h16M16 10v14" fill="none" stroke="var(--bg)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="var(--c1)"/><stop offset="1" stop-color="var(--c2)"/></linearGradient></defs></svg>
+      <span>TechNova</span>
+    </a>
+    <nav class="main-nav" id="mainNav" aria-label="Primary">
+      <a href="#shop" data-nav>Shop</a>
+      <a href="#categories" data-nav>Categories</a>
+      <a href="#deal" data-nav>Today's deal</a>
+      <a href="#why" data-nav>Why TechNova</a>
+      <a href="#reviews" data-nav>Reviews</a>
+      <div class="nav-auth-mobile" id="navAuthMobile"></div>
+    </nav>
+    <div class="search" id="search" role="search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+      <input id="searchInput" type="search" placeholder="Search phones, laptops, audio…" autocomplete="off" aria-label="Search products" aria-controls="suggest" aria-expanded="false">
+      <kbd aria-hidden="true">/</kbd>
+      <ul class="suggest" id="suggest" role="listbox" hidden></ul>
+    </div>
+    <div class="header-actions">
+      <button class="icon-btn theme-btn" id="themeBtn" aria-label="Switch to light mode" title="Toggle theme">
+        <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="icon-btn search-btn" id="searchBtn" aria-label="Search products">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+      </button>
+      <button class="icon-btn" id="wishBtn" aria-label="Open wishlist">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>
+        <span class="count" id="wishCount" hidden>0</span>
+      </button>
+      <button class="icon-btn" id="cartBtn" aria-label="Open cart">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2.5l2 11h10l2-8H7"/><circle cx="9" cy="19.5" r="1.3"/><circle cx="17" cy="19.5" r="1.3"/></svg>
+        <span class="count" id="cartCount" hidden>0</span>
+      </button>
+
+      <!-- Auth Bar (Login / Sign Up / User Account) -->
+      <div class="auth-bar" id="authBar">
+        <div class="auth-logged-out" id="authLoggedOut">
+          <button class="btn btn-ghost btn-sm auth-btn-login" id="loginBtn" type="button">Log In</button>
+          <button class="btn btn-primary btn-sm auth-btn-signup" id="signupBtn" type="button">Sign Up</button>
+          <button class="icon-btn auth-mobile-icon-btn" id="authMobileBtn" aria-label="Account / Sign in" title="Sign In">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </button>
+        </div>
+        <div class="auth-logged-in" id="authLoggedIn" hidden>
+          <div class="user-pill-wrap">
+            <button class="user-pill-btn" id="userMenuBtn" aria-expanded="false" aria-haspopup="true" aria-label="Account menu">
+              <span class="user-avatar" id="userAvatar">U</span>
+              <span class="user-name" id="userNameLabel">Account</span>
+              <svg class="chevron-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="user-menu-dropdown" id="userDropdown" hidden role="menu">
+              <div class="user-dropdown-info">
+                <span class="user-badge-role">VERIFIED MEMBER</span>
+                <strong id="dropUserName">User Name</strong>
+                <span id="dropUserEmail">user@example.com</span>
+              </div>
+              <div class="dropdown-divider"></div>
+              <button class="dropdown-link" id="dropWishBtn" type="button" role="menuitem">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>
+                <span>My Wishlist</span>
+                <span class="dropdown-badge" id="dropWishCount">0</span>
+              </button>
+              <button class="dropdown-link" id="dropCartBtn" type="button" role="menuitem">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2.5l2 11h10l2-8H7"/><circle cx="9" cy="19.5" r="1.3"/><circle cx="17" cy="19.5" r="1.3"/></svg>
+                <span>My Cart</span>
+                <span class="dropdown-badge" id="dropCartCount">0</span>
+              </button>
+              <div class="dropdown-divider"></div>
+              <button class="dropdown-link logout" id="logoutBtn" type="button" role="menuitem">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+                <span>Sign Out</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="promo-bar">Free delivery on orders over ₹4,999 · Use code <strong>TECHNOVA10</strong> for 10% off your first order</div>
+</header>
+
+<main id="top">
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <!-- Premium Hero Video Background -->
+  <div class="hero-video-wrap" aria-hidden="true">
+    <video id="heroBgVideo" class="hero-bg-video" muted loop playsinline preload="auto" poster="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1600&q=80">
+      <source src="hero-headphones.mp4" type="video/mp4">
+      <source src="https://cdn.coverr.co/videos/coverr-close-up-of-a-young-man-putting-on-his-headphones-1437/1080p.mp4" type="video/mp4">
+    </video>
+    <div class="hero-video-overlay"></div>
+    <div class="hero-video-badge" id="heroVideoBadge">
+      <span class="live-dot"></span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+      <span>Spatial Audio 360° Studio Live</span>
+    </div>
+  </div>
+
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <h1><span class="l1">The Future of</span> <span class="l2">Technology,</span> <span class="l3">Delivered.</span></h1>
+      <p class="hero-sub">Phones, laptops, audio and more. Every device is verified, covered by a 2-year warranty and at your door in two days.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#shop">Shop all devices</a>
+        <a class="btn btn-ghost" href="#deal">See today's deal</a>
+      </div>
+      <ul class="trust">
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12l5 5L21 6"/></svg>2-year warranty</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12l5 5L21 6"/></svg>30-day returns</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12l5 5L21 6"/></svg>Secure checkout</li>
+      </ul>
+    </div>
+
+    <div class="stage" id="stage">
+      <div class="stage-glow" aria-hidden="true"></div>
+      <div class="stage-ring" aria-hidden="true"></div>
+      <div class="stage-art" id="stageArt"></div>
+      <div class="stage-info" id="stageInfo"></div>
+      <div class="stage-tabs" id="stageTabs" role="tablist" aria-label="Featured devices"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Categories -->
+<section class="section" id="categories">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Shop by category</h2>
+      <p>Nine categories, one standard: every product is tested before it ships.</p>
+    </div>
+    <div class="cat-rail" id="catRail"></div>
+  </div>
+</section>
+
+<!-- Shop -->
+<section class="section" id="shop">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>All products</h2>
+      <p id="resultCount" aria-live="polite"></p>
+    </div>
+
+    <div class="toolbar">
+      <div class="chips" id="chips" role="group" aria-label="Filter by category"></div>
+      <div class="tools-right">
+        <button class="btn btn-ghost filter-toggle" id="filterToggle" aria-expanded="false" aria-controls="filters">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg>Filters
+        </button>
+        <label class="select">
+          <span class="sr">Sort products</span>
+          <select id="sort">
+            <option value="featured">Featured</option>
+            <option value="price-asc">Price: low to high</option>
+            <option value="price-desc">Price: high to low</option>
+            <option value="rating">Top rated</option>
+            <option value="discount">Biggest discount</option>
+          </select>
+        </label>
+      </div>
+    </div>
+
+    <div class="shop-layout">
+      <aside class="filters" id="filters" aria-label="Filters">
+        <div class="filter-block">
+          <h3>Brand</h3>
+          <div id="brandList" class="check-list"></div>
+        </div>
+        <div class="filter-block">
+          <h3>Maximum price</h3>
+          <input type="range" id="priceRange" aria-label="Maximum price">
+          <div class="range-val"><span>₹0</span><strong id="priceVal"></strong></div>
+        </div>
+        <div class="filter-block">
+          <h3>Customer rating</h3>
+          <div class="radio-list" id="ratingList">
+            <label><input type="radio" name="rating" value="0" checked><span>Any rating</span></label>
+            <label><input type="radio" name="rating" value="4.5"><span>4.5 stars and up</span></label>
+            <label><input type="radio" name="rating" value="4.7"><span>4.7 stars and up</span></label>
+          </div>
+        </div>
+        <div class="filter-block">
+          <label class="switch"><input type="checkbox" id="saleOnly"><span class="track"></span><span>On sale only</span></label>
+        </div>
+        <button class="btn btn-ghost full" id="resetFilters">Reset filters</button>
+      </aside>
+
+      <div>
+        <div class="grid" id="grid"></div>
+        <div class="empty" id="empty" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+          <h3>No products match these filters</h3>
+          <p>Raise the maximum price, clear a brand, or reset all filters.</p>
+          <button class="btn btn-primary" id="emptyReset">Reset filters</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Deal -->
+<section class="section" id="deal">
+  <div class="wrap">
+    <div class="deal" id="dealBox"></div>
+  </div>
+</section>
+
+<!-- Why -->
+<section class="section" id="why">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Buy with confidence</h2>
+      <p>The boring parts of buying electronics, handled properly.</p>
+    </div>
+    <div class="why-grid">
+      <article>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>
+        <h3>Two-day delivery</h3>
+        <p>Tracked from our warehouse to your door. Free on orders over ₹4,999.</p>
+      </article>
+      <article>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 3-6.2M4 4v4h4"/></svg>
+        <h3>30-day returns</h3>
+        <p>Changed your mind? Send it back in original condition for a full refund.</p>
+      </article>
+      <article>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
+        <h3>2-year warranty</h3>
+        <p>Every device is covered against defects, not just the ones that cost more.</p>
+      </article>
+      <article>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><rect x="3" y="13" width="4" height="6" rx="2"/><rect x="17" y="13" width="4" height="6" rx="2"/></svg>
+        <h3>Help from people</h3>
+        <p>Chat with a product specialist from 8am to 10pm, every day.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section class="section" id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What customers say</h2>
+      <p>Based on 12,400+ verified orders.</p>
+    </div>
+    <div class="reviews">
+      <figure>
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <blockquote>The laptop arrived a day early, sealed and with the invoice inside. Setup took ten minutes.</blockquote>
+        <figcaption><span class="avatar"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80" alt="Arjun M." loading="lazy" onerror="this.remove()">A</span><span><strong>Arjun M.</strong>Bengaluru · Tata Titan Book 14</span></figcaption>
+      </figure>
+      <figure>
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <blockquote>I asked support to compare two headphones. They gave a straight answer, not a sales pitch.</blockquote>
+        <figcaption><span class="avatar"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80" alt="Priya S." loading="lazy" onerror="this.remove()">P</span><span><strong>Priya S.</strong>Chandigarh · boAt Nirvana ANC</span></figcaption>
+      </figure>
+      <figure>
+        <div class="stars" aria-label="4 out of 5 stars">★★★★☆</div>
+        <blockquote>Returned a monitor that wasn't right for my desk. Refund landed in three days, no argument.</blockquote>
+        <figcaption><span class="avatar"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&h=120&q=80" alt="Rohan K." loading="lazy" onerror="this.remove()">R</span><span><strong>Rohan K.</strong>Pune · Zebronics Curved Arc 27</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter -->
+<section class="section" id="newsletter">
+  <div class="wrap">
+    <div class="news">
+      <div>
+        <h2>Get launch alerts and first access to deals</h2>
+        <p>One email a week. Unsubscribe in one click.</p>
+      </div>
+      <form id="newsForm" novalidate>
+        <label class="sr" for="newsEmail">Email address</label>
+        <input id="newsEmail" type="email" placeholder="you@example.com" autocomplete="email" required>
+        <button class="btn btn-primary" type="submit">Subscribe</button>
+        <p class="form-msg" id="newsMsg" role="status"></p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <a class="logo" href="#top" aria-label="TechNova home">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="url(#lg)"/><path d="M8 10h16M16 10v14" fill="none" stroke="var(--bg)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>TechNova</span>
+      </a>
+      <p class="foot-note">The Future of Technology, Delivered.</p>
+    </div>
+    <div>
+      <h3>Shop</h3>
+      <ul id="footCats"></ul>
+    </div>
+    <div>
+      <h3>Support</h3>
+      <ul>
+        <li><a href="#why">Delivery</a></li>
+        <li><a href="#why">Returns</a></li>
+        <li><a href="#why">Warranty</a></li>
+        <li><a href="#newsletter">Contact us</a></li>
+        <li><button class="foot-auth-link" id="footAuthBtn" type="button">Account / Sign In</button></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Company</h3>
+      <ul>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#deal">Today's deal</a></li>
+        <li><a href="#top">Back to top</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap legal">
+    <span>© 2026 TechNova. Demo storefront: products, brands and orders are fictional.</span>
+  </div>
+</footer>
+
+<!-- Overlay + drawers + modals -->
+<div class="overlay" id="overlay" hidden></div>
+
+<aside class="drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle" hidden>
+  <header><h2 id="cartTitle">Your cart</h2><button class="icon-btn" data-close aria-label="Close cart"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></header>
+  <div class="ship-meter" id="shipMeter"></div>
+  <div class="drawer-body" id="cartBody"></div>
+  <footer id="cartFoot"></footer>
+</aside>
+
+<aside class="drawer" id="wishDrawer" role="dialog" aria-modal="true" aria-labelledby="wishTitle" hidden>
+  <header><h2 id="wishTitle">Wishlist</h2><button class="icon-btn" data-close aria-label="Close wishlist"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></header>
+  <div class="drawer-body" id="wishBody"></div>
+</aside>
+
+<div class="modal" id="quickModal" role="dialog" aria-modal="true" aria-labelledby="qvName" hidden>
+  <div class="modal-card qv" id="qvCard"></div>
+</div>
+
+<div class="modal" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="coTitle" hidden>
+  <div class="modal-card co" id="coCard"></div>
+</div>
+
+<div class="modal" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle" hidden>
+  <div class="modal-card auth-card" id="authCard"></div>
+</div>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<script src="script.js"></script>
+
+
+</body>
+</html>
