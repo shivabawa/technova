@@ -2,6 +2,7 @@ TechNova — Electronics E-Commerce Website
 
 TechNova is a modern electronics e-commerce website designed to provide users with an easy and engaging online shopping experience. The project features a responsive interface and reusable React components.
 
+
 ✨ Features
 
 - Modern homepage and navigation
@@ -20,6 +21,7 @@ TechNova is a modern electronics e-commerce website designed to provide users wi
 - CSS3 — Styling and layout
 - Vite — Development server and build tool
 - Git & GitHub — Version control and collaboration
+
 
 🚀 Getting Started
 
@@ -49,6 +51,7 @@ Installation
 
 5. Open the local URL shown in your terminal, usually "http://localhost:5173/".
 
+
 📁 Project Structure
 
 technova/
@@ -65,9 +68,11 @@ technova/
 ├── vite.config.js
 └── README.md
 
+
 🎯 Project Objective
 
 The objective of TechNova is to build a user-friendly electronics shopping interface while applying front-end development concepts, component-based architecture, and modern web development tools.
+
 
 👥 Contributors
 
