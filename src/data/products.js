@@ -1,5 +1,5 @@
-export const FREE_SHIP = 4999;
-export const SHIP_FEE = 199;
+export const FREE_SHIP = 99;
+export const SHIP_FEE = 49;
 export const MAX_QTY = 5;
 export const PROMOS = { TECHNOVA10: 0.10, NEXORA10: 0.10, STUDENT5: 0.05 };
 
@@ -12,7 +12,8 @@ export const CATS = [
   { id: 'gaming',      label: 'Gaming',      tab: 'Gaming',     img: 'https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?auto=format&fit=crop&w=400&q=80' },
   { id: 'cameras',     label: 'Cameras',     tab: 'Camera',     img: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=400&q=80' },
   { id: 'monitors',    label: 'Monitors',    tab: 'Monitor',    img: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=400&q=80' },
-  { id: 'speakers',    label: 'Speakers',    tab: 'Speaker',    img: 'https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=400&q=80' }
+  { id: 'speakers',    label: 'Speakers',    tab: 'Speaker',    img: 'https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=400&q=80' },
+  { id: 'accessories', label: 'Accessories', tab: 'Accessory',  img: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=400&q=80' }
 ];
 
 export const PALETTE = [
@@ -56,7 +57,9 @@ export const PRODUCTS = [
   P(24, 'Ant Esports View 24 Speed', 'Ant Esports', 'monitors', 11999, 14999, 4.5, 1890, 'Sale', 16, 'Panel:24" FHD IPS, 240 Hz refresh rate|Latency:0.5 ms ultra-low response time|Sync:AMD FreeSync Premium & G-Sync compatible|Stand:Height adjustable pivot stand', 'Lightning-fast 240Hz competitive esports gaming monitor with zero ghosting and vibrant IPS viewing angles.', 30, 'https://images.unsplash.com/photo-1585792180666-f7347c490ee2?auto=format&fit=crop&w=800&q=80'),
   P(25, 'boAt Stone 1500 Pro Party', 'boAt', 'speakers', 6999, 9999, 4.6, 1240, '', 222, 'Audio:50 W High-Power Indian Bass Drivers|Lighting:Dynamic Beat-synced RGB LED lights|Battery:15 Hours continuous playtime|Water Resistance:IPX6 Splashproof', 'Thunderous 50W sound tuned with boAt Signature Bass, dual passive radiators, and beat-synced RGB lights for Diwali and house parties.', 26, 'https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=800&q=80'),
   P(26, 'boAt Rugby Mini Bass', 'boAt', 'speakers', 1499, 2499, 4.4, 5310, 'Best seller', 16, 'Audio:10 W punchy stereo sound|Portability:Ultra-compact with carabiner clip|Battery:12 Hours battery life|Rating:IPX7 submersible waterproof', 'Pocket-sized powerhouse. Clip it to your backpack for college or treks with IPX7 waterproof durability.', 90, 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=800&q=80'),
-  P(27, 'Tata Sound Sphere 360', 'Tata', 'speakers', 14999, 18999, 4.7, 530, 'New', 160, 'Acoustics:360° Omnidirectional Room-Filling 60 W Sound|Connectivity:Wi-Fi, AirPlay 2, Bluetooth 5.3, Optical IN|Assistant:Built-in voice assistant with Indian accent recognition|Finish:Premium woven acoustic fabric & brushed metal', 'Luxury architectural home audio speaker that automatically calibrates sound to your living room acoustics.', 4, 'https://images.unsplash.com/photo-1543512214-318c7553f230?auto=format&fit=crop&w=800&q=80')
+  P(27, 'Tata Sound Sphere 360', 'Tata', 'speakers', 14999, 18999, 4.7, 530, 'New', 160, 'Acoustics:360° Omnidirectional Room-Filling 60 W Sound|Connectivity:Wi-Fi, AirPlay 2, Bluetooth 5.3, Optical IN|Assistant:Built-in voice assistant with Indian accent recognition|Finish:Premium woven acoustic fabric & brushed metal', 'Luxury architectural home audio speaker that automatically calibrates sound to your living room acoustics.', 4, 'https://images.unsplash.com/photo-1543512214-318c7553f230?auto=format&fit=crop&w=800&q=80'),
+  P(28, 'Portronics Konnect C to C 65W Fast Charging Cable', 'Portronics', 'accessories', 149, 399, 4.7, 3420, 'Best seller', 222, 'Power:65W Fast Charging PD Support|Length:1.2 Meter Heavy-Duty Braided|Speed:480 Mbps High-Speed Data Sync|Durability:25,000+ Bend Tested Strain Relief', 'Heavy-duty nylon braided Type-C to Type-C cable engineered for 65W Power Delivery, universal smartphone and laptop compatibility, and ultra-durable zinc alloy connectors.', 85, 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=800&q=80'),
+  P(29, 'boAt BassHeads 100 In-Ear Wired Headphones', 'boAt', 'accessories', 189, 499, 4.6, 8650, 'Value pick', 196, 'Drivers:10 mm Dynamic Super Bass Drivers|Microphone:In-line HD Mic with Single Button Control|Connector:3.5 mm Gold-Plated L-Shaped Jack|Cable:Tangle-Free Hawk-Inspired Contour Wire', 'Iconic hawk-inspired in-ear wired headphones delivering thunderous punchy bass, crystal-clear vocal clarity, in-line calling mic, and ergonomic silicone comfort ear tips.', 64, 'https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=800&q=80')
 ];
 
 export const BY_ID = Object.fromEntries(PRODUCTS.map(p => [p.id, p]));

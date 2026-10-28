@@ -20,7 +20,7 @@ export function CategoryRail() {
       <div className="wrap">
         <div className="section-head">
           <h2>Shop by category</h2>
-          <p>Nine categories, one standard: every product is tested before it ships.</p>
+          <p>Ten categories, one standard: every product is tested before it ships.</p>
         </div>
         <div className="cat-rail" id="catRail">
           {CATS.map((c) => {

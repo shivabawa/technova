@@ -172,6 +172,25 @@ export function DeviceArt({ cat, hue = 222, className = '' }) {
         </>
       );
       break;
+    case 'accessories':
+      shape = (
+        <>
+          <path d="M110 180c-30-40 20-110 90-110s110 50 80 120-100 80-140 20" fill="none" stroke="#222c45" strokeWidth="10" strokeLinecap="round" />
+          <path d="M125 170c-20-30 15-85 75-85s85 40 60 95-75 60-110 15" fill="none" stroke={g} strokeWidth="5" strokeLinecap="round" />
+          <g transform="translate(250, 160) rotate(25)">
+            <rect x="0" y="0" width="36" height="54" rx="8" fill={b} stroke={edge} strokeWidth="1.8" />
+            <rect x="7" y="54" width="22" height="24" rx="5" fill="#dfe6f5" stroke="#94a3b8" strokeWidth="1" />
+            <rect x="12" y="62" width="12" height="4" rx="2" fill="#0f172a" />
+            <rect x="8" y="10" width="20" height="6" rx="3" fill={g} />
+          </g>
+          <g transform="translate(85, 140) rotate(-20)">
+            <rect x="0" y="10" width="28" height="44" rx="12" fill={b} stroke={edge} strokeWidth="1.8" />
+            <circle cx="14" cy="22" r="10" fill={g} />
+            <ellipse cx="14" cy="4" rx="14" ry="8" fill="#1e293b" />
+          </g>
+        </>
+      );
+      break;
     default:
       shape = null;
   }

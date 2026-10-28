@@ -11,6 +11,7 @@
   "dependencies": {
     "@vitejs/plugin-react": "^6.1.2",
     "canvas-confetti": "^1.9.4",
+    "qrcode": "^1.5.4",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "vite": "^8.3.5"

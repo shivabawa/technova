@@ -156,9 +156,9 @@ export function ShopSection() {
               <h3>Maximum price</h3>
               <input
                 type="range"
-                min={5000}
+                min={200}
                 max={MAX_PRICE}
-                step={5000}
+                step={200}
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(Number(e.target.value))}
                 aria-label="Maximum price"

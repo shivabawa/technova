@@ -519,7 +519,7 @@ export function Header() {
 
       {/* Top Promotional Announcement */}
       <div className="promo-bar">
-        Free delivery on orders over ₹4,999 · Use code <strong>TECHNOVA10</strong> for 10% off your first order
+        Free delivery on orders ₹99 and above · Use code <strong>TECHNOVA10</strong> for 10% off your first order
       </div>
     </header>
   );

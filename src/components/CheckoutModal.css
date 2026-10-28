@@ -1,0 +1,1419 @@
+/* ============ TechNova Professional Payment & Checkout System ============ */
+
+.checkout-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(3, 6, 14, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  overflow-y: auto;
+  animation: coFadeIn 0.25s var(--ease);
+}
+
+@keyframes coFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.checkout-card {
+  position: relative;
+  width: min(880px, 100%);
+  max-height: 94vh;
+  background: var(--bg2);
+  border: 1px solid var(--line2);
+  border-radius: 24px;
+  box-shadow: 0 35px 90px -20px #000, 0 0 50px -15px var(--c1-glow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: coCardSlide 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes coCardSlide {
+  from { opacity: 0; transform: scale(0.96) translateY(14px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Modal Header */
+.checkout-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 28px 18px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, transparent 100%);
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+  gap: 16px;
+}
+
+.checkout-header-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.checkout-header-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-d);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+.checkout-trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--ok);
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  padding: 3px 9px;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+}
+
+.checkout-trust-badge svg {
+  width: 13px;
+  height: 13px;
+}
+
+.checkout-close-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--line);
+  color: var(--text2);
+  cursor: pointer;
+  transition: all 0.2s var(--ease);
+  flex-shrink: 0;
+}
+
+.checkout-close-btn:hover {
+  background: rgba(255,255,255,0.1);
+  color: var(--text);
+  transform: rotate(90deg);
+}
+
+.checkout-close-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Stepper Bar */
+.checkout-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 12px 28px;
+  background: rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid var(--line);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.step-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text3);
+  transition: color 0.2s;
+}
+
+.step-item.active {
+  color: var(--text);
+}
+
+.step-item.completed {
+  color: var(--ok);
+}
+
+.step-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--line2);
+  color: var(--text2);
+}
+
+.step-item.active .step-num {
+  background: var(--c1);
+  border-color: var(--c1);
+  color: #fff;
+  box-shadow: 0 0 10px var(--c1-glow);
+}
+
+.step-item.completed .step-num {
+  background: var(--ok);
+  border-color: var(--ok);
+  color: #070A12;
+}
+
+.step-sep {
+  width: 32px;
+  height: 2px;
+  background: var(--line);
+  border-radius: 99px;
+}
+
+.step-sep.completed {
+  background: var(--ok);
+}
+
+/* Scrollable Modal Content */
+.checkout-body {
+  padding: 24px 28px 28px;
+  overflow-y: auto;
+  max-height: calc(94vh - 140px);
+}
+
+/* ============ STEP 1: Shipping Form ============ */
+.shipping-layout {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 28px;
+}
+
+.order-mini-recap {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: fit-content;
+}
+
+.recap-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  font-size: 15px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.recap-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 220px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.recap-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13.5px;
+  gap: 10px;
+}
+
+.recap-item-name {
+  color: var(--text2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+.recap-summary-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13.5px;
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+
+.recap-line {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text2);
+}
+
+.recap-line.total {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  border-top: 1px dashed var(--line2);
+  padding-top: 10px;
+  margin-top: 4px;
+}
+
+.recap-total-val {
+  color: var(--c2);
+  font-family: var(--font-d);
+  font-size: 18px;
+}
+
+/* Shipping Form Inputs */
+.shipping-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field-group.full {
+  grid-column: 1 / -1;
+}
+
+.field-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text2);
+  display: flex;
+  justify-content: space-between;
+}
+
+.field-group input {
+  height: 46px;
+  border-radius: 12px;
+  border: 1px solid var(--line2);
+  background: var(--bg);
+  padding: 0 14px;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s var(--ease);
+}
+
+.field-group input:focus {
+  border-color: var(--c1);
+  box-shadow: 0 0 0 3px rgba(45, 104, 255, 0.18);
+}
+
+.field-group.bad input {
+  border-color: #EF4444;
+}
+
+.field-error-msg {
+  font-size: 12px;
+  color: #EF4444;
+  margin-top: 2px;
+}
+
+.delivery-options-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.delivery-option-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--line2);
+  background: var(--card);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.delivery-option-card:hover {
+  border-color: var(--c1);
+}
+
+.delivery-option-card.selected {
+  border-color: var(--c1);
+  background: rgba(45, 104, 255, 0.08);
+}
+
+.delivery-option-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.delivery-option-info strong {
+  font-size: 13.5px;
+  color: var(--text);
+}
+
+.delivery-option-info span {
+  font-size: 12px;
+  color: var(--text3);
+}
+
+.delivery-price-tag {
+  font-weight: 700;
+  font-size: 13.5px;
+  color: var(--ok);
+}
+
+.btn-proceed-pay {
+  width: 100%;
+  height: 50px;
+  border-radius: 14px;
+  background: var(--grad);
+  color: #070A12;
+  font-weight: 700;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+  box-shadow: 0 8px 24px -6px rgba(45, 104, 255, 0.5);
+  transition: all 0.2s var(--ease);
+}
+
+.btn-proceed-pay:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -6px rgba(245, 158, 11, 0.6);
+}
+
+/* ============ STEP 2: Payment Gateway ============ */
+.pay-gateway-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 24px;
+}
+
+/* Payment Navigation Tabs */
+.pay-methods-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pay-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  color: var(--text2);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s var(--ease);
+  text-align: left;
+  position: relative;
+}
+
+.pay-nav-btn:hover {
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+}
+
+.pay-nav-btn.active {
+  background: linear-gradient(135deg, rgba(45, 104, 255, 0.16), rgba(245, 158, 11, 0.1));
+  border-color: var(--c1);
+  color: var(--text);
+  box-shadow: 0 4px 16px rgba(45, 104, 255, 0.18);
+}
+
+.pay-nav-icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  color: var(--c1);
+}
+
+.pay-nav-btn.active .pay-nav-icon {
+  color: var(--c2);
+}
+
+.pay-rec-badge {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: var(--grad);
+  color: #070A12;
+}
+
+.pay-summary-pill {
+  margin-top: auto;
+  padding: 14px;
+  background: rgba(0,0,0,0.2);
+  border: 1px dashed var(--line2);
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pay-summary-pill small {
+  font-size: 11px;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.pay-summary-pill strong {
+  font-size: 20px;
+  font-family: var(--font-d);
+  color: var(--c2);
+}
+
+/* Payment Method Panels */
+.pay-panel {
+  background: var(--card);
+  border: 1px solid var(--line2);
+  border-radius: 20px;
+  padding: 24px;
+  position: relative;
+}
+
+/* ============ UPI & Attached QR Section ============ */
+.upi-panel-core {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Payee Header Card */
+.payee-header-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(45, 104, 255, 0.1), rgba(245, 158, 11, 0.08));
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.payee-avatar-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.payee-avatar-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #1A73E8;
+  color: #fff;
+  font-family: var(--font-d);
+  font-size: 20px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 12px rgba(26, 115, 232, 0.4);
+}
+
+.payee-text-info h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.payee-verified-tick {
+  color: #10B981;
+  width: 16px;
+  height: 16px;
+}
+
+.payee-bank-sub {
+  font-size: 12.5px;
+  color: var(--text2);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.payee-bank-icon {
+  width: 14px;
+  height: 14px;
+  color: var(--c2);
+}
+
+.upi-id-pill-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg2);
+  padding: 6px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--line2);
+}
+
+.upi-id-code {
+  font-family: ui-monospace, 'SF Mono', Consolas, monospace;
+  font-size: 13px;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.btn-copy-mini {
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: rgba(45, 104, 255, 0.15);
+  color: var(--c1);
+  font-size: 11.5px;
+  font-weight: 600;
+  border: 1px solid rgba(45, 104, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.btn-copy-mini:hover {
+  background: var(--c1);
+  color: #fff;
+}
+
+.btn-copy-mini.copied {
+  background: #10B981;
+  color: #fff;
+  border-color: #10B981;
+}
+
+/* QR Mode Switcher */
+.qr-mode-switch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  background: var(--bg);
+  padding: 4px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+}
+
+.qr-tab-btn {
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text2);
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.qr-tab-btn.active {
+  background: var(--card2);
+  color: var(--text);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  border: 1px solid var(--line2);
+}
+
+/* QR Stage Layout */
+.qr-presentation-stage {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 22px;
+  align-items: center;
+}
+
+/* Dynamic QR Box */
+.dynamic-qr-box {
+  position: relative;
+  background: #FFFFFF;
+  padding: 16px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 16px 40px -10px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.1);
+  border: 2px solid rgba(245, 158, 11, 0.4);
+}
+
+.qr-top-tag {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed #E2E8F0;
+  font-size: 11px;
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.qr-gpay-brand {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  color: #1F2937;
+}
+
+.qr-gpay-logo {
+  height: 18px;
+  width: auto;
+}
+
+.qr-canvas-wrapper {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  display: grid;
+  place-items: center;
+  background: #FFF;
+}
+
+.qr-canvas-wrapper img,
+.qr-canvas-wrapper canvas {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  image-rendering: pixelated;
+}
+
+/* Center Emblem on dynamic QR */
+.qr-center-emblem {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+  display: grid;
+  place-items: center;
+  padding: 4px;
+  border: 2px solid #FFF;
+}
+
+.qr-amount-pill {
+  margin-top: 10px;
+  background: #0F172A;
+  color: #FFFFFF;
+  font-size: 13.5px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.qr-amount-pill span {
+  color: #F59E0B;
+}
+
+/* Standee Original Image Box */
+.original-standee-box {
+  background: #111827;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 2px solid rgba(245, 158, 11, 0.4);
+  box-shadow: 0 16px 40px -10px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.standee-img {
+  width: 100%;
+  max-height: 290px;
+  object-fit: contain;
+  display: block;
+  background: #000;
+}
+
+.standee-caption {
+  padding: 10px 14px;
+  background: #0B0F19;
+  font-size: 11.5px;
+  color: var(--text2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--line);
+}
+
+.btn-zoom-standee {
+  color: var(--cyan);
+  font-size: 11px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-weight: 600;
+}
+
+/* QR Side Instructions & Quick Pay */
+.qr-instructions-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Countdown Timer */
+.upi-expiry-timer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  font-size: 13px;
+  color: var(--text);
+}
+
+.timer-digits {
+  font-family: ui-monospace, 'SF Mono', Consolas, monospace;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--c2);
+  letter-spacing: 0.06em;
+}
+
+/* Mobile UPI Deep Links */
+.mobile-upi-apps-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mobile-upi-apps-wrap p {
+  font-size: 12.5px;
+  color: var(--text3);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.upi-app-buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.upi-app-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--line2);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.upi-app-btn:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: var(--c1);
+  transform: translateY(-1px);
+}
+
+.upi-app-btn.gpay:hover {
+  border-color: #4285F4;
+  box-shadow: 0 4px 14px rgba(66, 133, 244, 0.25);
+}
+
+.upi-app-btn.phonepe:hover {
+  border-color: #5F259F;
+  box-shadow: 0 4px 14px rgba(95, 37, 159, 0.25);
+}
+
+.upi-app-btn.paytm:hover {
+  border-color: #00BAF2;
+  box-shadow: 0 4px 14px rgba(0, 186, 242, 0.25);
+}
+
+.upi-app-btn.generic {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, rgba(45,104,255,0.12), rgba(245,158,11,0.12));
+  border-color: rgba(245,158,11,0.3);
+}
+
+/* Payment Verification / UTR Box */
+.upi-confirm-box {
+  background: var(--bg);
+  border: 1px solid var(--line2);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.upi-confirm-box label {
+  font-size: 12.5px;
+  color: var(--text2);
+  font-weight: 500;
+}
+
+.utr-input-row {
+  display: flex;
+  gap: 8px;
+}
+
+.utr-input-row input {
+  flex: 1;
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid var(--line2);
+  background: var(--card);
+  padding: 0 12px;
+  color: var(--text);
+  font-size: 13.5px;
+  font-family: ui-monospace, 'SF Mono', Consolas, monospace;
+}
+
+.utr-input-row input:focus {
+  outline: none;
+  border-color: var(--c1);
+}
+
+.btn-verify-paid {
+  width: 100%;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--grad);
+  color: #070A12;
+  font-weight: 700;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 6px 20px -4px rgba(45, 104, 255, 0.5);
+  transition: all 0.2s var(--ease);
+}
+
+.btn-verify-paid:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px -4px rgba(245, 158, 11, 0.6);
+}
+
+.btn-verify-paid:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Real-time verifying loader state */
+.upi-verifying-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.verifying-spinner {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 3px solid rgba(45, 104, 255, 0.2);
+  border-top-color: var(--c2);
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.verifying-step-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.verifying-sub {
+  font-size: 12px;
+  color: var(--text3);
+}
+
+/* ============ CARD PAYMENT SECTION ============ */
+.card-panel-core {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.virtual-card-wrapper {
+  perspective: 1000px;
+  width: min(340px, 100%);
+  margin: 0 auto;
+}
+
+.virtual-card {
+  width: 100%;
+  height: 190px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #18233C 0%, #0B111F 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.virtual-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 70% 30%, rgba(45,104,255,0.25), transparent 50%);
+  pointer-events: none;
+}
+
+.card-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-chip {
+  width: 36px;
+  height: 26px;
+  background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+  border-radius: 6px;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.3);
+}
+
+.card-brand-tag {
+  font-family: var(--font-d);
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: #F8FAFC;
+}
+
+.card-number-display {
+  font-family: ui-monospace, 'SF Mono', Consolas, monospace;
+  font-size: 18px;
+  letter-spacing: 0.16em;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  margin-top: 10px;
+}
+
+.card-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: 11px;
+}
+
+.card-holder-name {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.card-expiry-val {
+  font-family: ui-monospace, 'SF Mono', Consolas, monospace;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ============ NETBANKING & COD SECTION ============ */
+.bank-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.bank-option-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 10px;
+  border-radius: 14px;
+  border: 1px solid var(--line2);
+  background: var(--bg);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.bank-option-btn:hover {
+  background: rgba(255,255,255,0.06);
+  border-color: var(--c1);
+}
+
+.bank-option-btn.selected {
+  border-color: var(--c1);
+  background: rgba(45, 104, 255, 0.12);
+  box-shadow: 0 0 12px rgba(45, 104, 255, 0.2);
+}
+
+.bank-logo-text {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--text);
+}
+
+.bank-name-sub {
+  font-size: 11px;
+  color: var(--text3);
+}
+
+/* ============ STEP 3: ORDER SUCCESS & TAX INVOICE ============ */
+.success-card-core {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  padding: 10px 0;
+}
+
+.success-tick-pulse {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.14);
+  border: 2px solid #10B981;
+  display: grid;
+  place-items: center;
+  color: #10B981;
+  animation: tickPop 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes tickPop {
+  0% { transform: scale(0.4); opacity: 0; }
+  70% { transform: scale(1.15); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.success-tick-pulse svg {
+  width: 40px;
+  height: 40px;
+  stroke-width: 2.8;
+}
+
+.order-receipt-box {
+  width: 100%;
+  max-width: 580px;
+  background: var(--card);
+  border: 1px solid var(--line2);
+  border-radius: 18px;
+  padding: 22px 24px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.receipt-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 12px;
+}
+
+.receipt-id-badge {
+  font-family: ui-monospace, 'SF Mono', Consolas, monospace;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--c2);
+  letter-spacing: 0.04em;
+}
+
+.receipt-status-pill {
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.15);
+  color: #10B981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.receipt-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 18px;
+  font-size: 13px;
+}
+
+.receipt-prop {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.receipt-prop span {
+  font-size: 11.5px;
+  color: var(--text3);
+}
+
+.receipt-prop strong {
+  color: var(--text);
+  font-size: 13.5px;
+}
+
+/* Shipment Tracker */
+.shipment-tracker-wrap {
+  width: 100%;
+  max-width: 580px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px 20px;
+}
+
+.tracker-title {
+  font-size: 12px;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.tracker-steps-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.track-step-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  z-index: 2;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text2);
+}
+
+.track-node-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 2px solid var(--line2);
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+}
+
+.track-step-node.done .track-node-circle {
+  background: var(--ok);
+  border-color: var(--ok);
+  color: #070A12;
+}
+
+.track-step-node.current .track-node-circle {
+  background: var(--c1);
+  border-color: var(--c1);
+  color: #fff;
+  box-shadow: 0 0 10px var(--c1-glow);
+}
+
+/* Success Action Buttons */
+.success-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-print-invoice {
+  padding: 11px 20px;
+  border-radius: 12px;
+  background: var(--card);
+  border: 1px solid var(--line2);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+
+.btn-print-invoice:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: var(--c1);
+}
+
+.btn-continue-shop {
+  padding: 11px 24px;
+  border-radius: 12px;
+  background: var(--grad);
+  color: #070A12;
+  font-weight: 700;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(45, 104, 255, 0.4);
+  transition: all 0.2s;
+}
+
+.btn-continue-shop:hover {
+  transform: translateY(-1px);
+}
+
+/* ============ PRINTABLE TAX INVOICE MODAL ============ */
+.invoice-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.tax-invoice-sheet {
+  width: min(720px, 100%);
+  background: #FFFFFF;
+  color: #0F172A;
+  border-radius: 16px;
+  padding: 36px 40px;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.invoice-actions-top {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 18px 0;
+  font-size: 13.5px;
+}
+
+.invoice-table th {
+  background: #F1F5F9;
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 2px solid #CBD5E1;
+  font-weight: 600;
+}
+
+.invoice-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .checkout-card {
+    border-radius: 18px;
+    max-height: 96vh;
+  }
+  .checkout-header {
+    padding: 16px 20px;
+  }
+  .checkout-stepper {
+    padding: 10px 16px;
+    font-size: 11.5px;
+  }
+  .checkout-body {
+    padding: 18px 16px;
+  }
+  .shipping-layout {
+    grid-template-columns: 1fr;
+  }
+  .pay-gateway-layout {
+    grid-template-columns: 1fr;
+  }
+  .pay-methods-nav {
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  .pay-nav-btn {
+    white-space: nowrap;
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+  .qr-presentation-stage {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+  .dynamic-qr-box {
+    max-width: 290px;
+  }
+  .original-standee-box {
+    max-width: 290px;
+  }
+  .tax-invoice-sheet {
+    padding: 24px 20px;
+  }
+}

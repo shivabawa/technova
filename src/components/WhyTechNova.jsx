@@ -16,7 +16,7 @@ export function WhyTechNova() {
               <circle cx="17" cy="18" r="1.6" />
             </svg>
             <h3>Two-day delivery</h3>
-            <p>Tracked from our warehouse to your door. Free on orders over ₹4,999.</p>
+            <p>Tracked from our warehouse to your door. Free on orders ₹99 and above.</p>
           </article>
           <article>
             <svg viewBox="0 0 24 24" aria-hidden="true">
